@@ -1141,5 +1141,303 @@
       renderCart();
     });
   </script>
+  <!-- ==================== KAGAYAKI ADMIN MODE (PASSWORD: P1gtr!) ==================== -->
+<style>
+  @keyframes adminPulse { 0%, 100% { box-shadow: 0 0 18px rgba(168,85,247,0.45); } 50% { box-shadow: 0 0 32px rgba(217,70,239,0.8); } }
+  #kagayaki-admin-trigger {
+    position: fixed; bottom: 18px; right: 18px; z-index: 9990;
+    background: #09090b; color: #c084fc; border: 1px solid #9333ea;
+    font-family: monospace; font-size: 11px; font-weight: 800; letter-spacing: 0.14em;
+    padding: 8px 14px; border-radius: 999px; cursor: pointer;
+    animation: adminPulse 3s infinite; transition: all 0.2s ease;
+  }
+  #kagayaki-admin-trigger:hover { background: #7e22ce; color: #ffffff; transform: translateY(-2px); }
+  .kg-overlay {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(5, 5, 10, 0.88); backdrop-filter: blur(10px);
+    align-items: center; justify-content: center; padding: 16px;
+  }
+  .kg-overlay.open { display: flex; }
+  .kg-box {
+    background: #0c0a14; border: 1px solid #9333ea; border-radius: 16px;
+    width: 100%; max-width: 780px; max-height: 90vh; overflow-y: auto;
+    color: #f4f4f5; font-family: system-ui, -apple-system, sans-serif;
+    box-shadow: 0 0 50px rgba(147, 51, 234, 0.4); padding: 24px;
+  }
+  .kg-input {
+    width: 100%; background: #181426; border: 1px solid #3f3f46; color: #fff;
+    padding: 9px 12px; border-radius: 8px; font-size: 13px; outline: none;
+  }
+  .kg-input:focus { border-color: #c084fc; box-shadow: 0 0 0 2px rgba(192,132,252,0.25); }
+  .kg-btn {
+    background: linear-gradient(135deg, #7e22ce, #c026d3); color: #fff;
+    border: none; padding: 9px 16px; border-radius: 8px; font-weight: 700;
+    font-size: 12px; letter-spacing: 0.06em; cursor: pointer; transition: opacity 0.2s;
+  }
+  .kg-btn:hover { opacity: 0.9; }
+  .kg-btn-ghost {
+    background: #1f1b2e; color: #d4d4d8; border: 1px solid #3f3f46;
+    padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;
+  }
+  .kg-btn-ghost:hover { border-color: #a855f7; color: #fff; }
+  .kg-row {
+    display: grid; grid-template-columns: 2fr 1fr 1.2fr auto; gap: 10px;
+    align-items: center; background: #131020; border: 1px solid #27272a;
+    padding: 12px; border-radius: 10px; margin-bottom: 10px;
+  }
+  @media (max-width: 640px) { .kg-row { grid-template-columns: 1fr; } }
+</style>
+
+<!-- Floating Cyberpunk Admin Button (or press Ctrl+Shift+A) -->
+<button id="kagayaki-admin-trigger" type="button" title="Kagayaki Producer Console">// KAGAYAKI ADMIN</button>
+
+<!-- Password Login Modal -->
+<div id="kg-login-modal" class="kg-overlay">
+  <div class="kg-box" style="max-width: 380px; text-align: center;">
+    <div style="font-family: monospace; color: #c084fc; font-size: 11px; letter-spacing: 0.2em; margin-bottom: 6px;">SERIAL: 03 // RESTRICTED</div>
+    <h2 style="font-size: 20px; font-weight: 900; margin: 0 0 6px; letter-spacing: 0.04em;">KAGAYAKI CONSOLE</h2>
+    <p style="font-size: 12px; color: #a1a1aa; margin: 0 0 18px;">Enter producer access key to edit merch &amp; prices.</p>
+    <input id="kg-pass-input" class="kg-input" type="password" placeholder="Access key..." style="text-align: center; letter-spacing: 0.15em; margin-bottom: 10px;" />
+    <div id="kg-login-err" style="color: #f43f5e; font-size: 12px; min-height: 18px; margin-bottom: 10px;"></div>
+    <div style="display: flex; gap: 8px; justify-content: center;">
+      <button id="kg-login-cancel" class="kg-btn-ghost" type="button">CANCEL</button>
+      <button id="kg-login-submit" class="kg-btn" type="button">UNLOCK SYSTEM</button>
+    </div>
+  </div>
+</div>
+
+<!-- Full Admin Merch & Price Dashboard -->
+<div id="kg-dashboard-modal" class="kg-overlay">
+  <div class="kg-box">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; border-bottom: 1px solid #27272a; padding-bottom: 14px; margin-bottom: 18px;">
+      <div>
+        <div style="font-family: monospace; color: #c084fc; font-size: 11px; letter-spacing: 0.16em;">AKARI [03] // LIVE STORE CONTROL</div>
+        <h2 style="font-size: 20px; font-weight: 900; margin: 2px 0 0;">MERCH &amp; PRICING DASHBOARD</h2>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <button id="kg-export-btn" class="kg-btn" type="button">⬇ DOWNLOAD UPDATED index.html</button>
+        <button id="kg-close-dash" class="kg-btn-ghost" type="button">CLOSE</button>
+      </div>
+    </div>
+
+    <!-- Add New Merch Drop Form -->
+    <div style="background: #161224; border: 1px dashed #7e22ce; border-radius: 12px; padding: 14px; margin-bottom: 20px;">
+      <div style="font-family: monospace; font-size: 11px; color: #e879f9; font-weight: 700; margin-bottom: 10px;">+ PUBLISH NEW MERCH DROP</div>
+      <div style="display: grid; grid-template-columns: 2fr 1fr 2fr auto; gap: 8px;">
+        <input id="kg-new-title" class="kg-input" type="text" placeholder="Item Name (e.g. AKARI Cyber Hoodie)" />
+        <input id="kg-new-price" class="kg-input" type="text" placeholder="$65.00" />
+        <input id="kg-new-img" class="kg-input" type="text" placeholder="Image URL (optional)" />
+        <button id="kg-add-btn" class="kg-btn" type="button">ADD DROP</button>
+      </div>
+    </div>
+
+    <!-- Existing Catalog Editor List -->
+    <div style="font-family: monospace; font-size: 11px; color: #a1a1aa; margin-bottom: 10px;">ACTIVE STOREFRONT ITEMS (EDIT PRICES OR STOCK STATUS):</div>
+    <div id="kg-items-list"></div>
+
+    <div style="margin-top: 14px; font-size: 11px; color: #a1a1aa; background: #131020; padding: 10px 12px; border-radius: 8px; border-left: 3px solid #a855f7;">
+      <strong>How to push updates live to everyone:</strong> Make your edits above, click <strong>DOWNLOAD UPDATED index.html</strong>, then upload that file to your GitHub <code>akari-merch-site</code> repo.
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var ADMIN_PASS = "P1gtr!";
+  var triggerBtn = document.getElementById("kagayaki-admin-trigger");
+  var loginModal = document.getElementById("kg-login-modal");
+  var dashModal = document.getElementById("kg-dashboard-modal");
+  var passInput = document.getElementById("kg-pass-input");
+  var loginErr = document.getElementById("kg-login-err");
+  var itemsList = document.getElementById("kg-items-list");
+
+  function openLogin() {
+    loginErr.textContent = "";
+    passInput.value = "";
+    loginModal.classList.add("open");
+    setTimeout(function () { passInput.focus(); }, 60);
+  }
+
+  triggerBtn.addEventListener("click", openLogin);
+  document.addEventListener("keydown", function (e) {
+    if (e.ctrlKey && e.shiftKey && (e.key === "A" || e.key === "a")) {
+      e.preventDefault();
+      openLogin();
+    }
+  });
+
+  document.getElementById("kg-login-cancel").addEventListener("click", function () {
+    loginModal.classList.remove("open");
+  });
+
+  function checkPassword() {
+    if (passInput.value === ADMIN_PASS) {
+      loginModal.classList.remove("open");
+      renderDashboard();
+      dashModal.classList.add("open");
+    } else {
+      loginErr.textContent = "ACCESS DENIED // INVALID KEY";
+      passInput.value = "";
+      passInput.focus();
+    }
+  }
+
+  document.getElementById("kg-login-submit").addEventListener("click", checkPassword);
+  passInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") checkPassword();
+  });
+
+  document.getElementById("kg-close-dash").addEventListener("click", function () {
+    dashModal.classList.remove("open");
+  });
+
+  function findProductCards() {
+    var candidates = Array.prototype.slice.call(
+      document.querySelectorAll("article, .product-card, [data-product], main section div")
+    );
+    var cards = [];
+    var seen = [];
+    for (var i = 0; i < candidates.length; i++) {
+      var el = candidates[i];
+      if (seen.indexOf(el) !== -1) continue;
+      if (el.closest("#kg-login-modal") || el.closest("#kg-dashboard-modal")) continue;
+      var heading = el.querySelector("h2, h3, h4");
+      if (!heading) continue;
+      var text = el.textContent || "";
+      if (!/\$\s*\d+/.test(text)) continue;
+      if (el.querySelectorAll("h2, h3, h4").length > 2) continue;
+      seen.push(el);
+      cards.push(el);
+    }
+    return cards;
+  }
+
+  function findPriceNode(card) {
+    var walker = document.createTreeWalker(card, NodeFilter.SHOW_TEXT, null, false);
+    var node;
+    while ((node = walker.nextNode())) {
+      if (/\$\s*\d+(\.\d{2})?/.test(node.nodeValue)) return node;
+    }
+    return null;
+  }
+
+  function renderDashboard() {
+    itemsList.innerHTML = "";
+    var cards = findProductCards();
+    if (cards.length === 0) {
+      itemsList.innerHTML = '<div style="color:#a1a1aa;font-size:13px;">No merch cards detected yet—use the form above to publish your first drop!</div>';
+      return;
+    }
+    cards.forEach(function (card, idx) {
+      var titleEl = card.querySelector("h2, h3, h4");
+      var priceNode = findPriceNode(card);
+      var currentTitle = titleEl ? titleEl.textContent.trim() : "Merch Item #" + (idx + 1);
+      var currentPrice = priceNode ? priceNode.nodeValue.trim() : "$0.00";
+      var isSoldOut = card.getAttribute("data-sold-out") === "true";
+
+      var row = document.createElement("div");
+      row.className = "kg-row";
+
+      var nameIn = document.createElement("input");
+      nameIn.className = "kg-input";
+      nameIn.value = currentTitle;
+      nameIn.addEventListener("input", function () {
+        if (titleEl) titleEl.textContent = nameIn.value;
+      });
+
+      var priceIn = document.createElement("input");
+      priceIn.className = "kg-input";
+      priceIn.value = currentPrice;
+      priceIn.addEventListener("input", function () {
+        if (priceNode) priceNode.nodeValue = priceIn.value;
+      });
+
+      var stockBtn = document.createElement("button");
+      stockBtn.type = "button";
+      stockBtn.className = "kg-btn-ghost";
+      stockBtn.textContent = isSoldOut ? "SOLD OUT" : "IN STOCK";
+      stockBtn.style.color = isSoldOut ? "#f43f5e" : "#4ade80";
+      stockBtn.addEventListener("click", function () {
+        var nowSoldOut = card.getAttribute("data-sold-out") !== "true";
+        card.setAttribute("data-sold-out", nowSoldOut ? "true" : "false");
+        card.style.opacity = nowSoldOut ? "0.55" : "1";
+        stockBtn.textContent = nowSoldOut ? "SOLD OUT" : "IN STOCK";
+        stockBtn.style.color = nowSoldOut ? "#f43f5e" : "#4ade80";
+      });
+
+      var delBtn = document.createElement("button");
+      delBtn.type = "button";
+      delBtn.className = "kg-btn-ghost";
+      delBtn.textContent = "✕";
+      delBtn.title = "Remove Item";
+      delBtn.style.color = "#f43f5e";
+      delBtn.addEventListener("click", function () {
+        card.remove();
+        renderDashboard();
+      });
+
+      row.appendChild(nameIn);
+      row.appendChild(priceIn);
+      row.appendChild(stockBtn);
+      row.appendChild(delBtn);
+      itemsList.appendChild(row);
+    });
+  }
+
+  document.getElementById("kg-add-btn").addEventListener("click", function () {
+    var titleVal = document.getElementById("kg-new-title").value.trim();
+    var priceVal = document.getElementById("kg-new-price").value.trim() || "$45.00";
+    var imgVal = document.getElementById("kg-new-img").value.trim();
+    if (!titleVal) return;
+    if (priceVal.charAt(0) !== "$") priceVal = "$" + priceVal;
+
+    var cards = findProductCards();
+    var grid = cards.length > 0 ? cards[0].parentElement : (document.querySelector("main") || document.body);
+    var newCard = document.createElement("div");
+    newCard.setAttribute("data-product", "true");
+    newCard.className = cards.length > 0 ? cards[0].className : "bg-white border border-zinc-200 rounded-2xl p-5 shadow-sm";
+
+    var safeTitle = titleVal.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+    var safePrice = priceVal.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    var safeImg = imgVal.replace(/"/g, "&quot;");
+
+    var imgHtml = imgVal
+      ? '<img src="' + safeImg + '" alt="' + safeTitle + '" class="w-full h-56 object-cover rounded-xl mb-4" />'
+      : '<div class="w-full h-56 rounded-xl mb-4 flex items-center justify-center font-mono text-xs font-bold tracking-widest text-purple-300" style="background:linear-gradient(135deg,#09090b,#3b0764);">AKARI [03] // NEW DROP</div>';
+
+    newCard.innerHTML = imgHtml +
+      '<div class="flex items-center justify-between gap-2 mb-1">' +
+      '<h3 class="font-bold text-lg text-zinc-900">' + safeTitle + '</h3>' +
+      '<span class="font-mono font-extrabold text-purple-700">' + safePrice + '</span>' +
+      '</div>' +
+      '<p class="text-xs text-zinc-500">Official Kagayaki Records Limited Edition Drop</p>';
+
+    grid.appendChild(newCard);
+    document.getElementById("kg-new-title").value = "";
+    document.getElementById("kg-new-price").value = "";
+    document.getElementById("kg-new-img").value = "";
+    renderDashboard();
+  });
+
+  document.getElementById("kg-export-btn").addEventListener("click", function () {
+    var clone = document.documentElement.cloneNode(true);
+    var loginEl = clone.querySelector("#kg-login-modal");
+    var dashEl = clone.querySelector("#kg-dashboard-modal");
+    if (loginEl) loginEl.classList.remove("open");
+    if (dashEl) dashEl.classList.remove("open");
+    var htmlOut = "<!DOCTYPE html>\n" + clone.outerHTML;
+    var blob = new Blob([htmlOut], { type: "text/html;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "index.html";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+})();
+</script>
+<!-- ==================== END KAGAYAKI ADMIN MODE ==================== -->
 </body>
 </html>
