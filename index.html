@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AKARI [03] // KAGAYAKI — Official Merch Store</title>
+  <!-- Custom SVG Browser Tab Icon (Favicon): Anime Neon-Purple Head Silhouette with Spiky Bangs, Cat-Ear Headphones & Geometric Black 'A' -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Crect width='240' height='240' rx='54' fill='%2309090b'/%3E%3Cg stroke='%2309090b' stroke-width='5' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M64 76 C24 84 14 146 34 196 C44 176 46 156 42 138 C52 158 58 184 54 214 C78 192 84 152 68 114 Z' fill='%239333ea'/%3E%3Cpath d='M176 76 C216 84 226 146 206 196 C196 176 194 156 198 138 C188 158 182 184 186 214 C162 192 156 152 172 114 Z' fill='%239333ea'/%3E%3Cpolygon points='58,86 68,26 108,58' fill='%23a855f7'/%3E%3Cpolygon points='182,86 172,26 132,58' fill='%23a855f7'/%3E%3Cpath d='M62 104 C62 42 178 42 178 104' fill='none' stroke='%23a855f7' stroke-width='12'/%3E%3Cpath d='M66 96 C66 50 174 50 174 96 L176 128 C176 164 146 188 120 198 C94 188 64 164 64 128 Z' fill='%23a855f7'/%3E%3Cpath d='M70 84 L66 136 L82 116 L84 154 L98 124 L104 148 L116 116 L128 152 L134 120 L150 144 L154 112 L172 136 L170 84 C150 56 90 56 70 84 Z' fill='%23c084fc'/%3E%3Crect x='48' y='96' width='18' height='46' rx='8' fill='%239333ea'/%3E%3Crect x='174' y='96' width='18' height='46' rx='8' fill='%239333ea'/%3E%3C/g%3E%3Cpath d='M120 132 L98 180 L111 180 L115 170 L129 170 L133 180 L146 180 L124 132 Z M118 160 L122 149 L126 160 Z' fill='%2309090b'/%3E%3C/svg%3E" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Orbitron, Noto Sans JP, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@500;700;900&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+            display: ['Orbitron', 'Noto Sans JP', 'sans-serif'],
+            jp: ['Noto Sans JP', 'sans-serif'],
+          },
+          colors: {
+            lightbg: '#F8F9FA',
+            jet: '#09090B',
+            charcoal: '#111827',
+            neon: {
+              purple: '#9333EA',
+              bright: '#A855F7',
+              magenta: '#D946EF',
+            }
+          },
+          boxShadow: {
+            'card': '0 4px 20px -2px rgba(17, 24, 39, 0.06), 0 2px 6px -1px rgba(147, 51, 234, 0.06)',
+            'neon': '0 8px 24px -4px rgba(147, 51, 234, 0.32)',
+            'neon-strong': '0 12px 32px -4px rgba(147, 51, 234, 0.45)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #F8F9FA;
+      color: #111827;
+      overflow-x: hidden;
+    }
+    .cyber-grid-light {
+      background-image: 
+        linear-gradient(to right, rgba(147, 51, 234, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(147, 51, 234, 0.07) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F8F9FA;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C084FC;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9333EA;
+    }
+  </style>
+</head>
+<body class="bg-lightbg text-charcoal font-sans antialiased selection:bg-purple-600 selection:text-white">
+
+  <!-- Toast Notification Banner -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Top Promo Bar (High-Contrast Jet Black + Neon Purple) -->
+  <div class="bg-jet text-white border-b border-purple-500/40 text-xs sm:text-sm py-2.5 px-4 text-center font-medium tracking-wide">
+    <span class="text-purple-400 font-bold">⚡ DEBUT SINGLE DROP:</span>
+    <span class="font-bold text-white mx-1">"YOUNG BOY A (ヤングボーイA)"</span>
+    <span class="hidden sm:inline text-zinc-300">— Use code</span>
+    <button onclick="copyPromoCode()" class="ml-1 px-2.5 py-0.5 rounded-md bg-purple-600 hover:bg-purple-500 text-white font-display font-bold text-xs tracking-wider transition cursor-pointer" title="Click to copy code">
+      AKARI03
+    </button>
+    <span class="text-zinc-300 ml-1">for 10% OFF!</span>
+  </div>
+
+  <!-- Sticky Light-Mode Navigation Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-200 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
+      
+      <!-- Custom Brand Logo: Sleek Anime Neon-Purple Head Silhouette with Spiky Bangs, Cat-Ear Headphones & Geometric Black 'A' -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-jet border-2 border-purple-600 p-0.5 shadow-neon group-hover:scale-105 transition flex items-center justify-center shrink-0 overflow-hidden">
+          <svg viewBox="0 0 240 240" class="w-full h-full" aria-label="Akari 03 Anime Emblem Logo">
+            <g stroke="#09090B" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">
+              <!-- Layered Dynamic Flowing Twin Pigtails -->
+              <path d="M64 76 C24 84 14 146 34 196 C44 176 46 156 42 138 C52 158 58 184 54 214 C78 192 84 152 68 114 Z" fill="#9333EA" />
+              <path d="M176 76 C216 84 226 146 206 196 C196 176 194 156 198 138 C188 158 182 184 186 214 C162 192 156 152 172 114 Z" fill="#9333EA" />
+              <!-- Sleek Cyber Cat-Ear Headphones -->
+              <polygon points="58,86 68,26 108,58" fill="#A855F7" />
+              <polygon points="69,75 74,42 97,60" fill="#09090B" stroke="none" />
+              <polygon points="182,86 172,26 132,58" fill="#A855F7" />
+              <polygon points="171,75 166,42 143,60" fill="#09090B" stroke="none" />
+              <!-- Headband -->
+              <path d="M62 104 C62 42 178 42 178 104" fill="none" stroke="#A855F7" stroke-width="11" />
+              <path d="M62 104 C62 42 178 42 178 104" fill="none" stroke="#09090B" stroke-width="3.5" />
+              <!-- Anime Face Silhouette Contour -->
+              <path d="M66 96 C66 50 174 50 174 96 L176 128 C176 164 146 188 120 198 C94 188 64 164 64 128 Z" fill="#A855F7" />
+              <!-- Expressive Spiky Anime Bangs & Side Locks -->
+              <path d="M70 84 L66 138 L82 116 L84 156 L98 124 L104 148 L116 116 L128 152 L134 120 L150 144 L154 112 L172 138 L170 84 C150 56 90 56 70 84 Z" fill="#C084FC" />
+              <!-- Side Ear Cups -->
+              <rect x="48" y="96" width="18" height="46" rx="8" fill="#9333EA" />
+              <rect x="174" y="96" width="18" height="46" rx="8" fill="#9333EA" />
+            </g>
+            <!-- Bold Custom Geometric Black 'A' Centered on Face -->
+            <path d="M120 132 L98 180 L111 180 L115 170 L129 170 L133 180 L146 180 L124 132 Z M118 160 L122 149 L126 160 Z" fill="#09090B" />
+          </svg>
+        </div>
+        <div>
+          <div class="font-display font-black text-base sm:text-lg tracking-wider text-jet group-hover:text-purple-600 transition">
+            AKARI <span class="text-purple-600">[03]</span> <span class="text-zinc-400 font-normal">//</span> KAGAYAKI
+          </div>
+          <div class="text-[10px] uppercase tracking-[0.2em] text-purple-700 font-bold font-jp">
+            アカリ公式ストア • OFFICIAL STORE
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
+        <button onclick="filterCategory('All', true)" class="text-zinc-700 hover:text-purple-600 transition cursor-pointer">Shop All</button>
+        <button onclick="filterCategory('Apparel', true)" class="text-zinc-700 hover:text-purple-600 transition cursor-pointer">Apparel</button>
+        <button onclick="filterCategory('Accessories', true)" class="text-zinc-700 hover:text-purple-600 transition cursor-pointer">Accessories</button>
+        <button onclick="filterCategory('Music & Collectibles', true)" class="text-zinc-700 hover:text-purple-600 transition cursor-pointer">Music &amp; Collectibles</button>
+      </nav>
+
+      <!-- Right Status Badge & Cart Button -->
+      <div class="flex items-center gap-3">
+        <!-- Single Drop Status Badge -->
+        <div class="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-xs">
+          <span class="w-2 h-2 rounded-full bg-purple-600 animate-ping"></span>
+          <span class="text-zinc-600 font-medium">Single Drop:</span>
+          <span class="font-display font-bold text-purple-700">NOV 30 • 2026</span>
+        </div>
+
+        <!-- Cart Toggle Button -->
+        <button onclick="toggleCart(true)" aria-label="Open Shopping Cart" class="relative flex items-center gap-2 px-4 py-2.5 rounded-xl bg-jet hover:bg-purple-700 text-white transition shadow-sm cursor-pointer">
+          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span class="hidden sm:inline text-sm font-bold">Cart</span>
+          <span id="cart-badge" class="min-w-[22px] h-[22px] px-1.5 rounded-full bg-purple-600 text-white font-display text-xs font-bold flex items-center justify-center">
+            0
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Crisp Light-Mode Hero Section -->
+  <section class="relative overflow-hidden cyber-grid-light bg-gradient-to-b from-white via-lightbg to-lightbg border-b border-zinc-200">
+    <!-- Subtle Purple Ambient Glow -->
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-purple-400/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-fuchsia-400/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-18 lg:py-22 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Hero Left Copy -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-purple-300 shadow-xs text-xs font-display font-bold tracking-widest text-purple-700 uppercase">
+            <span>SERIAL: 03</span>
+            <span class="text-purple-400">//</span>
+            <span class="font-jp">バーチャルボーカル・アカリ</span>
+          </div>
+
+          <h1 class="font-display font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-tight text-jet">
+            YOUNG BOY A
+            <span class="block text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-purple-600 to-fuchsia-600 mt-1 font-jp">
+              (ヤングボーイA)
+            </span>
+            <span class="block text-xl sm:text-2xl lg:text-3xl text-zinc-700 font-extrabold tracking-widest mt-2">
+              // OFFICIAL MERCH DROP
+            </span>
+            <!-- Large Sleek Anime Akari Neon-Purple Head Silhouette + Geometric Black 'A' Showcase -->
+            <div class="aspect-square rounded-2xl bg-jet border-2 border-purple-600 flex items-center justify-center p-4 relative overflow-hidden shadow-neon">
+              <svg viewBox="0 0 240 240" class="w-full h-full" aria-label="Akari 03 Featured Emblem">
+                <defs>
+                  <radialGradient id="animeEmblemGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#A855F7" stop-opacity="0.34" />
+                    <stop offset="100%" stop-color="#09090B" stop-opacity="0" />
+                  </radialGradient>
+                </defs>
+                <!-- Subtle Cyber Halo -->
+                <circle cx="120" cy="120" r="112" fill="url(#animeEmblemGlow)" />
+                <circle cx="120" cy="120" r="106" fill="none" stroke="#9333EA" stroke-width="1.2" stroke-dasharray="6 5" opacity="0.55" />
+
+                <g stroke="#09090B" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+                  <!-- Dynamic Layered Flowing Twin Pigtails (Left) -->
+                  <path d="M64 76 C24 84 14 146 34 196 C44 176 46 156 42 138 C52 158 58 184 54 214 C78 192 84 152 68 114 Z" fill="#9333EA" />
+                  <path d="M46 96 C26 116 26 152 38 178" fill="none" stroke="#09090B" stroke-width="3.5" />
+                  <path d="M58 114 C48 140 52 168 62 190" fill="none" stroke="#09090B" stroke-width="3.5" />
+
+                  <!-- Dynamic Layered Flowing Twin Pigtails (Right) -->
+                  <path d="M176 76 C216 84 226 146 206 196 C196 176 194 156 198 138 C188 158 182 184 186 214 C162 192 156 152 172 114 Z" fill="#9333EA" />
+                  <path d="M194 96 C214 116 214 152 202 178" fill="none" stroke="#09090B" stroke-width="3.5" />
+                  <path d="M182 114 C192 140 188 168 178 190" fill="none" stroke="#09090B" stroke-width="3.5" />
+
+                  <!-- Sleek Cyber Cat-Ear Headphones -->
+                  <polygon points="58,86 68,26 108,58" fill="#A855F7" />
+                  <polygon points="69,75 74,42 97,60" fill="#09090B" stroke="none" />
+                  <circle cx="77" cy="51" r="2.5" fill="#C084FC" stroke="none" />
+
+                  <polygon points="182,86 172,26 132,58" fill="#A855F7" />
+                  <polygon points="171,75 166,42 143,60" fill="#09090B" stroke="none" />
+                  <circle cx="163" cy="51" r="2.5" fill="#C084FC" stroke="none" />
+
+                  <!-- Dual-Line Headband Arc -->
+                  <path d="M62 104 C62 42 178 42 178 104" fill="none" stroke="#A855F7" stroke-width="11" />
+                  <path d="M62 104 C62 42 178 42 178 104" fill="none" stroke="#09090B" stroke-width="3" />
+
+                  <!-- Sharp Anime Face Silhouette Contour -->
+                  <path d="M66 96 C66 50 174 50 174 96 L176 128 C176 164 146 188 120 198 C94 188 64 164 64 128 Z" fill="#A855F7" />
+
+                  <!-- Expressive Spiky Anime Bangs & Framing Side Locks -->
+                  <path d="M70 84 L66 138 L82 116 L84 156 L98 124 L104 148 L116 116 L128 152 L134 120 L150 144 L154 112 L172 138 L170 84 C150 56 90 56 70 84 Z" fill="#C084FC" />
+                  <path d="M92 64 C84 82 84 102 88 122" fill="none" stroke="#09090B" stroke-width="3" />
+                  <path d="M148 64 C156 82 156 102 152 122" fill="none" stroke="#09090B" stroke-width="3" />
+
+                  <!-- Side Cyber Ear Cups -->
+                  <rect x="48" y="96" width="18" height="46" rx="8" fill="#9333EA" />
+                  <line x1="54" y1="104" x2="54" y2="134" stroke="#09090B" stroke-width="2.5" />
+                  <rect x="174" y="96" width="18" height="46" rx="8" fill="#9333EA" />
+                  <line x1="186" y1="104" x2="186" y2="134" stroke="#09090B" stroke-width="2.5" />
+                </g>
+
+                <!-- Bold Custom Geometric Black 'A' Centered on Face -->
+                <path d="M120 132 L98 180 L111 180 L115 170 L129 170 L133 180 L146 180 L124 132 Z M118 160 L122 149 L126 160 Z" fill="#09090B" />
+              </svg>
+            </div>
+
+            <div class="mt-4 flex items-center justify-between text-xs font-bold text-zinc-600">
+              <span>KAGAYAKI RECORDS</span>
+              <span class="text-purple-700">8 ITEMS IN STOCK</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Merch Catalog Section -->
+  <main id="catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+    
+    <!-- Section Header & Category Filter Tabs -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <div>
+        <div class="text-xs font-display font-bold tracking-widest text-purple-700 uppercase mb-1">
+          OFFICIAL MERCHANDISE // グッズ一覧
+        </div>
+        <h2 class="font-display font-black text-2xl sm:text-3xl text-jet">
+          AKARI [03] DROP CATALOG
+        </h2>
+      </div>
+
+      <!-- Interactive Category Filter Tabs -->
+      <div id="category-tabs" class="flex flex-wrap gap-2">
+        <button data-category="All" onclick="filterCategory('All')" class="filter-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-display font-bold tracking-wider uppercase transition bg-purple-600 text-white shadow-neon cursor-pointer">
+          All (8)
+        </button>
+        <button data-category="Apparel" onclick="filterCategory('Apparel')" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-display font-bold tracking-wider uppercase transition bg-white text-charcoal hover:text-purple-700 border border-zinc-300 cursor-pointer">
+          Apparel
+        </button>
+        <button data-category="Accessories" onclick="filterCategory('Accessories')" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-display font-bold tracking-wider uppercase transition bg-white text-charcoal hover:text-purple-700 border border-zinc-300 cursor-pointer">
+          Accessories
+        </button>
+        <button data-category="Music & Collectibles" onclick="filterCategory('Music & Collectibles')" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-display font-bold tracking-wider uppercase transition bg-white text-charcoal hover:text-purple-700 border border-zinc-300 cursor-pointer">
+          Music &amp; Collectibles
+        </button>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Populated dynamically via JavaScript -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-zinc-200 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Brand Info with Anime Emblem Mark -->
+        <div class="flex flex-col sm:flex-row items-center gap-3.5 text-center sm:text-left">
+          <div class="w-11 h-11 rounded-2xl bg-jet border-2 border-purple-600 p-0.5 shadow-neon shrink-0 overflow-hidden">
+            <svg viewBox="0 0 240 240" class="w-full h-full" aria-label="Akari 03 Footer Emblem">
+              <g stroke="#09090B" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">
+                <path d="M64 76 C24 84 14 146 34 196 C44 176 46 156 42 138 C52 158 58 184 54 214 C78 192 84 152 68 114 Z" fill="#9333EA" />
+                <path d="M176 76 C216 84 226 146 206 196 C196 176 194 156 198 138 C188 158 182 184 186 214 C162 192 156 152 172 114 Z" fill="#9333EA" />
+                <polygon points="58,86 68,26 108,58" fill="#A855F7" />
+                <polygon points="182,86 172,26 132,58" fill="#A855F7" />
+                <path d="M62 104 C62 42 178 42 178 104" fill="none" stroke="#A855F7" stroke-width="11" />
+                <path d="M66 96 C66 50 174 50 174 96 L176 128 C176 164 146 188 120 198 C94 188 64 164 64 128 Z" fill="#A855F7" />
+                <path d="M70 84 L66 138 L82 116 L84 156 L98 124 L104 148 L116 116 L128 152 L134 120 L150 144 L154 112 L172 138 L170 84 C150 56 90 56 70 84 Z" fill="#C084FC" />
+                <rect x="48" y="96" width="18" height="46" rx="8" fill="#9333EA" />
+                <rect x="174" y="96" width="18" height="46" rx="8" fill="#9333EA" />
+              </g>
+              <path d="M120 132 L98 180 L111 180 L115 170 L129 170 L133 180 L146 180 L124 132 Z M118 160 L122 149 L126 160 Z" fill="#09090B" />
+            </svg>
+          </div>
+          <div>
+            <div class="font-display font-black text-lg tracking-wider text-jet">
+              KAGAYAKI <span class="text-purple-600">//</span> AKARI [03]
+            </div>
+            <p class="text-xs text-zinc-600 mt-0.5 font-jp">
+              Debut Single: "Young Boy A (ヤングボーイA)" — J-Rock / Virtual Vocalist Project
+            </p>
+          </div>
+        </div>
+
+        <!-- Streaming Links -->
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <button onclick="openSingleModal()" class="px-4 py-2 rounded-xl bg-lightbg hover:bg-purple-50 border border-zinc-300 hover:border-purple-400 text-xs font-display font-bold text-jet transition flex items-center gap-2 cursor-pointer">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Spotify
+          </button>
+          <button onclick="openSingleModal()" class="px-4 py-2 rounded-xl bg-lightbg hover:bg-purple-50 border border-zinc-300 hover:border-purple-400 text-xs font-display font-bold text-jet transition flex items-center gap-2 cursor-pointer">
+            <span class="w-2 h-2 rounded-full bg-rose-500"></span> YouTube
+          </button>
+          <button onclick="openSingleModal()" class="px-4 py-2 rounded-xl bg-lightbg hover:bg-purple-50 border border-zinc-300 hover:border-purple-400 text-xs font-display font-bold text-jet transition flex items-center gap-2 cursor-pointer">
+            <span class="w-2 h-2 rounded-full bg-pink-500"></span> Apple Music
+          </button>
+        </div>
+      </div>
+
+      <div class="border-t border-zinc-200 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+        <p>© 2026 Kagayaki. All rights reserved. Akari [03] is an original virtual artist character.</p>
+        <p class="font-display font-bold tracking-wider text-purple-700">TOKYO // J-ROCK DIVISION</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- PRODUCT QUICK-VIEW MODAL                                  -->
+  <!-- ========================================================= -->
+  <div id="product-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-jet/70 backdrop-blur-xs">
+    <div class="relative w-full max-w-2xl rounded-3xl bg-white border-2 border-purple-500/40 shadow-2xl overflow-hidden">
+      <!-- Close Button -->
+      <button onclick="closeProductModal()" aria-label="Close modal" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-xl bg-lightbg hover:bg-jet text-charcoal hover:text-white border border-zinc-300 flex items-center justify-center transition cursor-pointer">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div id="modal-content" class="grid grid-cols-1 md:grid-cols-2">
+        <!-- Dynamically injected product details -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- DEBUT SINGLE INFO MODAL                                   -->
+  <!-- ========================================================= -->
+  <div id="single-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-jet/70 backdrop-blur-xs">
+    <div class="relative w-full max-w-lg rounded-3xl bg-white border-2 border-purple-500/40 p-6 sm:p-8 shadow-2xl">
+      <button onclick="closeSingleModal()" aria-label="Close single info" class="absolute top-4 right-4 w-9 h-9 rounded-xl bg-lightbg hover:bg-jet text-charcoal hover:text-white border border-zinc-300 flex items-center justify-center transition cursor-pointer">
+        ✕
+      </button>
+
+      <div class="inline-block px-3 py-1 rounded-full bg-purple-100 border border-purple-300 text-purple-800 font-display font-bold text-xs tracking-wider mb-3">
+        DEBUT SINGLE METADATA
+      </div>
+      <h3 class="font-display font-black text-2xl text-jet">
+        Young Boy A <span class="text-purple-600 font-jp">(ヤングボーイA)</span>
+      </h3>
+      <p class="text-sm text-zinc-600 mt-1">
+        Primary Artist: <strong class="text-jet">Kagayaki</strong> • Featuring: <strong class="text-purple-700">Akari [03]</strong>
+      </p>
+
+      <div class="mt-5 space-y-3 rounded-2xl bg-lightbg p-4 border border-zinc-200 text-sm">
+        <div class="flex justify-between">
+          <span class="text-zinc-500">Genre:</span>
+          <span class="font-bold text-jet">J-Rock / Alternative / Vocaloid</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-zinc-500">Label &amp; Copyright:</span>
+          <span class="font-bold text-jet">© 2026 Kagayaki</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-zinc-500">Release Target:</span>
+          <span class="font-display font-bold text-purple-700">November 30, 2026</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-zinc-500">Platforms:</span>
+          <span class="font-medium text-charcoal">Spotify, Apple Music, YouTube</span>
+        </div>
+      </div>
+
+      <p class="text-xs text-zinc-600 mt-4 leading-relaxed">
+        Celebrate the release with limited-edition "03" tour hoodies, custom purple guitar picks, and the physical collector's CD + lyric booklet.
+      </p>
+
+      <button onclick="closeSingleModal()" class="w-full mt-6 py-3.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-display font-bold text-xs tracking-wider uppercase transition cursor-pointer">
+        Back to Merch Store
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- SLIDE-OUT SHOPPING CART DRAWER                            -->
+  <!-- ========================================================= -->
+  <div id="cart-drawer-overlay" onclick="toggleCart(false)" class="fixed inset-0 z-50 hidden bg-jet/60 backdrop-blur-xs transition-opacity"></div>
+
+  <aside id="cart-drawer" class="fixed top-0 right-0 z-50 h-full w-full max-w-md bg-white border-l border-zinc-200 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    
+    <!-- Drawer Header -->
+    <div class="p-5 border-b border-zinc-200 flex items-center justify-between bg-jet text-white">
+      <div class="flex items-center gap-2.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
+        <h3 class="font-display font-bold text-base tracking-wider uppercase">
+          Your Cart (<span id="drawer-item-count">0</span>)
+        </h3>
+      </div>
+      <button onclick="toggleCart(false)" aria-label="Close cart" class="p-2 rounded-xl bg-zinc-800 hover:bg-purple-600 text-zinc-200 hover:text-white transition cursor-pointer">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Cart Items List / Checkout View Container -->
+    <div id="cart-body" class="flex-1 overflow-y-auto p-5 space-y-4 bg-lightbg">
+      <!-- Populated dynamically -->
+    </div>
+
+    <!-- Drawer Footer (Totals & Checkout CTA) -->
+    <div id="cart-footer" class="p-5 border-t border-zinc-200 bg-white space-y-4">
+      <!-- Promo Code Input -->
+      <div>
+        <label for="promo-input" class="block text-[11px] font-display font-bold uppercase tracking-wider text-zinc-600 mb-1.5">
+          Promo Code (Try <span class="text-purple-700">AKARI03</span>)
+        </label>
+        <div class="flex gap-2">
+          <input id="promo-input" type="text" placeholder="Enter code..." class="flex-1 px-3.5 py-2 rounded-xl bg-lightbg border border-zinc-300 focus:border-purple-600 focus:outline-none text-sm text-jet font-semibold uppercase" />
+          <button onclick="applyPromoCode()" class="px-4 py-2 rounded-xl bg-jet hover:bg-purple-700 text-xs font-display font-bold text-white uppercase transition cursor-pointer">
+            Apply
+          </button>
+        </div>
+        <p id="promo-feedback" class="text-xs mt-1.5 hidden"></p>
+      </div>
+
+      <!-- Price Breakdown -->
+      <div class="space-y-1.5 text-sm border-t border-zinc-200 pt-3">
+        <div class="flex justify-between text-zinc-600">
+          <span>Subtotal</span>
+          <span id="cart-subtotal" class="font-semibold text-jet">$0.00</span>
+        </div>
+        <div id="discount-row" class="hidden flex justify-between text-emerald-600 font-bold">
+          <span>Discount (AKARI03 - 10%)</span>
+          <span id="cart-discount">-$0.00</span>
+        </div>
+        <div class="flex justify-between text-jet font-display font-black text-base pt-1">
+          <span>Total</span>
+          <span id="cart-total" class="text-purple-700">$0.00</span>
+        </div>
+      </div>
+
+      <button id="checkout-btn" onclick="startCheckout()" class="w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-700 disabled:opacity-40 disabled:pointer-events-none text-white font-display font-bold text-sm tracking-wider uppercase shadow-neon transition cursor-pointer">
+        Proceed to Checkout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ========================================================= -->
+  <!-- APPLICATION LOGIC & CUSTOM SVG MERCH GENERATOR            -->
+  <!-- ========================================================= -->
+  <script>
+    // 1. Product Catalog Data (All 8 Items)
+    const PRODUCTS = [
+      {
+        id: 'hoodie-03',
+        name: '"03" Signature Oversized Zip Hoodie',
+        jpTag: '03 ジップパーカー',
+        category: 'Apparel',
+        price: 65.00,
+        badge: 'BESTSELLER',
+        sizes: ['S', 'M', 'L', 'XL'],
+        description: 'Heavyweight 460gsm jet-black French terry zip hoodie featuring the filled neon-purple Akari head silhouette with black "A" emblem on the chest and katakana sleeve print.',
+        artType: 'hoodie'
+      },
+      {
+        id: 'tee-yba',
+        name: '"Young Boy A" Heavyweight Tour Tee',
+        jpTag: 'ヤングボーイA Tシャツ',
+        category: 'Apparel',
+        price: 34.00,
+        badge: 'DEBUT DROP',
+        sizes: ['S', 'M', 'L', 'XL'],
+        description: 'Boxy streetwear fit 100% combed cotton tee in crisp white or jet black with vibrant neon-purple Akari "A" head emblem and "YOUNG BOY A / ヤングボーイA" tour print.',
+        artType: 'tee'
+      },
+      {
+        id: 'standee-akari',
+        name: 'Akari [03] Neon Stage Acrylic Standee',
+        jpTag: 'アカリ アクリルスタンド',
+        category: 'Accessories',
+        price: 22.00,
+        badge: 'LIMITED',
+        sizes: null,
+        description: '6-inch crystal-clear die-cut acrylic figure of Akari [03] mounted on a jet-black & neon-purple equalizer base stamped with her signature "A" emblem.',
+        artType: 'standee'
+      },
+      {
+        id: 'picks-yba',
+        name: '"ヤングボーイA" Custom Purple Guitar Picks',
+        jpTag: 'カスタムギターピック',
+        category: 'Accessories',
+        price: 12.00,
+        badge: 'STAGE GEAR',
+        sizes: null,
+        description: 'Set of 5 heavy-gauge 1.0mm Delrin picks in jet black and neon purple, stamped with the Akari head silhouette "A" emblem and "ヤングボーイA" katakana grip.',
+        artType: 'picks'
+      },
+      {
+        id: 'hat-03',
+        name: 'Cyber Dad Hat — Akari "A" Crest',
+        jpTag: 'シリアル03 キャップ',
+        category: 'Apparel',
+        price: 28.00,
+        badge: null,
+        sizes: ['One Size'],
+        description: 'Structured 6-panel jet-black cotton twill cap with high-density 3D neon-purple embroidery of Akari’s head silhouette and black "A" emblem on the crown.',
+        artType: 'hat'
+      },
+      {
+        id: 'pins-stickers',
+        name: '"Young Boy A" Holographic Sticker & Pin Pack',
+        jpTag: 'ホログラムステッカー＆缶バッジ',
+        category: 'Accessories',
+        price: 15.00,
+        badge: null,
+        sizes: null,
+        description: 'Includes 4 weatherproof holographic vinyl decals featuring the neon-purple Akari "A" silhouette logo plus 2 hard-enamel lapel pins.',
+        artType: 'pins'
+      },
+      {
+        id: 'cd-bundle',
+        name: '"Young Boy A (ヤングボーイA)" Collector\'s CD + Lyric Booklet',
+        jpTag: '初回限定盤CD＋歌詞ブックレット',
+        category: 'Music & Collectibles',
+        price: 18.00,
+        badge: 'COLLECTOR\'S',
+        sizes: null,
+        description: 'Physical jewel-case single featuring the original master and instrumental mix, bundled with a 16-page Japanese/English lyric booklet and Akari "A" emblem disc art.',
+        artType: 'cd'
+      },
+      {
+        id: 'lanyard-bundle',
+        name: 'VIP Stage Lanyard & Wristband Bundle',
+        jpTag: 'ステージパス＆リストバンド',
+        category: 'Accessories',
+        price: 16.00,
+        badge: null,
+        sizes: null,
+        description: 'Woven J-Rock concert lanyard with detachable "AKARI [03] VIP BACKSTAGE" pass card featuring her neon-purple head silhouette emblem and matching wristband.',
+        artType: 'lanyard'
+      }
+    ];
+
+    // Helper: Sleek Anime Akari Neon-Purple Head Silhouette + Spiky Bangs + Cat-Ear Headphones + Geometric Black 'A' Emblem
+    function miniAkariEmblem(x, y, scale = 1) {
+      return `
+        <g transform="translate(${x}, ${y}) scale(${scale})">
+          <g stroke="#09090B" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">
+            <!-- Layered Flowing Twin Pigtails -->
+            <path d="M-56 -44 C-96 -36 -106 26 -86 76 C-76 56 -74 36 -78 18 C-68 38 -62 64 -66 94 C-42 72 -36 32 -52 -6 Z" fill="#9333EA"/>
+            <path d="M56 -44 C96 -36 106 26 86 76 C76 56 74 36 78 18 C68 38 62 64 66 94 C42 72 36 32 52 -6 Z" fill="#9333EA"/>
+            <!-- Cyber Cat-Ear Headphones -->
+            <polygon points="-62,-34 -52,-94 -12,-62" fill="#A855F7"/>
+            <polygon points="-51,-45 -46,-78 -23,-60" fill="#09090B" stroke="none"/>
+            <polygon points="62,-34 52,-94 12,-62" fill="#A855F7"/>
+            <polygon points="51,-45 46,-78 23,-60" fill="#09090B" stroke="none"/>
+            <!-- Headband -->
+            <path d="M-58 -16 C-58 -78 58 -78 58 -16" fill="none" stroke="#A855F7" stroke-width="11"/>
+            <path d="M-58 -16 C-58 -78 58 -78 58 -16" fill="none" stroke="#09090B" stroke-width="3.5"/>
+            <!-- Anime Face Silhouette Contour -->
+            <path d="M-54 -24 C-54 -70 54 -70 54 -24 L56 8 C56 44 26 68 0 78 C-26 68 -56 44 -56 8 Z" fill="#A855F7"/>
+            <!-- Expressive Spiky Anime Bangs -->
+            <path d="M-50 -36 L-54 18 L-38 -4 L-36 36 L-22 4 L-16 28 L-4 -4 L8 32 L14 0 L30 24 L34 -8 L52 18 L50 -36 C30 -64 -30 -64 -50 -36 Z" fill="#C084FC"/>
+            <!-- Ear Cups -->
+            <rect x="-72" y="-24" width="18" height="46" rx="8" fill="#9333EA"/>
+            <rect x="54" y="-24" width="18" height="46" rx="8" fill="#9333EA"/>
+          </g>
+          <!-- Geometric Black 'A' Centered on Face -->
+          <path d="M0 12 L-22 60 L-9 60 L-5 50 L9 50 L13 60 L26 60 L4 12 Z M-2 40 L2 29 L6 40 Z" fill="#09090B"/>
+        </g>
+      `;
+    }
+
+    // 2. Custom Inline SVG Product Artwork Matching Light Mode + Anime Akari 'A' Emblem
+    function getProductSVG(type) {
+      switch (type) {
+        case 'hoodie':
+          return `
+            <svg viewBox="0 0 240 240" class="w-full h-full">
+              <rect width="240" height="240" fill="#F3F4F6"/>
+              <circle cx="120" cy="120" r="82" fill="#A855F7" opacity="0.16"/>
+              <!-- Jet Black Hoodie -->
+              <path d="M75,58 L95,45 Q120,55 145,45 L165,58 L195,95 L178,112 L162,90 L162,190 L78,190 L78,90 L62,112 L45,95 Z" fill="#09090B" stroke="#9333EA" stroke-width="2.5"/>
+              <path d="M95,45 Q120,72 145,45" fill="none" stroke="#A855F7" stroke-width="2"/>
+              <line x1="120" y1="62" x2="120" y2="190" stroke="#9333EA" stroke-width="2" stroke-dasharray="4 2"/>
+              <!-- Anime Akari Purple Head + Black 'A' Chest Crest -->
+              ${miniAkariEmblem(141, 102, 0.17)}
+              <text x="98" y="145" text-anchor="middle" fill="#C084FC" font-family="Noto Sans JP, sans-serif" font-weight="900" font-size="10" transform="rotate(-90 98 145)">アカリ 03</text>
+            </svg>`;
+        case 'tee':
+          return `
+            <svg viewBox="0 0 240 240" class="w-full h-full">
+              <rect width="240" height="240" fill="#F3F4F6"/>
+              <circle cx="120" cy="120" r="82" fill="#9333EA" opacity="0.14"/>
+              <!-- Crisp White Streetwear Tee -->
+              <path d="M82,52 L102,48 Q120,60 138,48 L158,52 L192,80 L174,102 L158,88 L158,192 L82,192 L82,88 L66,102 L48,80 Z" fill="#FFFFFF" stroke="#09090B" stroke-width="2.5"/>
+              <!-- Graphic Box Print -->
+              <rect x="92" y="84" width="56" height="76" rx="6" fill="#09090B" stroke="#9333EA" stroke-width="2"/>
+              ${miniAkariEmblem(120, 114, 0.21)}
+              <text x="120" y="146" text-anchor="middle" fill="#FFFFFF" font-family="Orbitron, sans-serif" font-weight="800" font-size="6.8">YOUNG BOY A</text>
+              <text x="120" y="155" text-anchor="middle" fill="#C084FC" font-family="Noto Sans JP, sans-serif" font-weight="900" font-size="6.5">ヤングボーイA</text>
+            </svg>`;
+        case 'standee':
+          return `
+            <svg viewBox="0 0 240 240" class="w-full h-full">
+              <rect width="240" height="240" fill="#F3F4F6"/>
+              <!-- Acrylic Cutout Outline -->
+              <path d="M86,42 Q120,24 154,42 L172,112 L156,174 L84,174 L68,112 Z" fill="#FFFFFF" stroke="#9333EA" stroke-width="2.5"/>
+              <!-- Anime Akari Emblem Figure -->
+              ${miniAkariEmblem(120, 92, 0.44)}
+              <text x="120" y="158" text-anchor="middle" fill="#09090B" font-family="Orbitron, sans-serif" font-weight="900" font-size="11">AKARI [03]</text>
+              <!-- Jet Black & Purple Stage Base -->
+              <ellipse cx="120" cy="184" rx="60" ry="14" fill="#09090B" stroke="#9333EA" stroke-width="2.5"/>
+              <text x="120" y="188" text-anchor="middle" fill="#C084FC" font-family="Orbitron, sans-serif" font-weight="800" font-size="8">YOUNG BOY A</text>
+            </svg>`;
+        case 'picks':
+          return `
+            <svg viewBox="0 0 240 240" class="w-full h-full">
+              <rect width="240" height="240" fill="#F3F4F6"/>
+              <!-- Left Pick -->
+              <g transform="translate(76,128) rotate(-20)">
+                <path d="M-28,-25 Q0,-38 28,-25 Q32,12 0,36 Q-32,12 -28,-25 Z" fill="#9333EA" stroke="#09090B" stroke-width="2.5"/>
+                <text x="0" y="5" text-anchor="middle" fill="#09090B" font-family="Orbitron, sans-serif" font-weight="900" font-size="15">03</text>
+              </g>
+              <!-- Right Pick -->
+              <g transform="translate(164,128) rotate(20)">
+                <path d="M-28,-25 Q0,-38 28,-25 Q32,12 0,36 Q-32,12 -28,-25 Z" fill="#9333EA" stroke="#09090B" stroke-width="2.5"/>
+                <text x="0" y="3" text-anchor="middle" fill="#FFFFFF" font-family="Noto Sans JP, sans-serif" font-weight="900" font-size="8.5">アカリ</text>
+              </g>
+              <!-- Center Hero Pick with Anime Akari 'A' Emblem -->
+              <g transform="translate(120,108)">
+                <path d="M-36,-32 Q0,-47 36,-32 Q40,16 0,46 Q-40,16 -36,-32 Z" fill="#09090B" stroke="#9333EA" stroke-width="3"/>
+                ${miniAkariEmblem(0, -4, 0.23)}
+                <text x="0" y="26" text-anchor="middle" fill="#E9D5FF" font-family="Noto Sans JP, sans-serif" font-weight="800" font-size="7">ヤングボーイA</text>
+              </g>
+            </svg>`;
+        case 'hat':
+          return `
+            <svg viewBox="0 0 240 240" class="w-full h-full">
+              <rect width="240" height="240" fill="#F3F4F6"/>
+              <circle cx="120" cy="120" r="80" fill="#9333EA" opacity="0.14"/>
+              <!-- Jet Black Cap Crown -->
+              <path d="M55,132 C55,76 185,76 185,132 Z" fill="#09090B" stroke="#9333EA" stroke-width="2.5"/>
+              <!-- Cap Visor -->
+              <path d="M48,132 Q120,154 192,132 Q175,162 120,162 Q65,162 48,132 Z" fill="#18181B" stroke="#9333EA" stroke-width="2.5"/>
+              <!-- Embroidered Anime Akari Head + Black 'A' -->
+              ${miniAkariEmblem(120, 108, 0.21)}
+            </svg>`;
+        case 'pins':
+          return `
+            <svg viewBox="0 0 240 240" class="w-full h-full">
+              <rect width="240" height="240" fill="#F3F4F6"/>
+              <!-- Holographic Sticker Card -->
+              <rect x="44" y="46" width="94" height="94" rx="18" transform="rotate(-8 91 93)" fill="#09090B" stroke="#9333EA" stroke-width="3"/>
+              <g transform="rotate(-8 91 93)">
+                ${miniAkariEmblem(91, 86, 0.27)}
+                <text x="91" y="124" text-anchor="middle" fill="#FFFFFF" font-family="Orbitron, sans-serif" font-weight="900" font-size="10">AKARI [03]</text>
+              </g>
+              <!-- Enamel Pin Badge 1 -->
+              <circle cx="164" cy="96" r="32" fill="#A855F7" stroke="#09090B" stroke-width="3"/>
+              <path d="M164 81 L150 110 L158 110 L161 104 L169 104 L172 110 L180 110 L166 81 Z M163 98 L165 91 L167 98 Z" fill="#09090B"/>
+              <!-- Enamel Pin Badge 2 -->
+              <rect x="82" y="150" width="108" height="36" rx="18" fill="#09090B" stroke="#9333EA" stroke-width="2.5"/>
+              <text x="136" y="172" text-anchor="middle" fill="#C084FC" font-family="Noto Sans JP, sans-serif" font-weight="900" font-size="11">ヤングボーイA</text>
+            </svg>`;
+        case 'cd':
+          return `
+            <svg viewBox="0 0 240 240" class="w-full h-full">
+              <rect width="240" height="240" fill="#F3F4F6"/>
+              <!-- Disc Peeking Out -->
+              <circle cx="152" cy="120" r="62" fill="#A855F7" stroke="#09090B" stroke-width="2.5"/>
+              <circle cx="152" cy="120" r="45" fill="none" stroke="#09090B" stroke-width="5" opacity="0.25"/>
+              <circle cx="152" cy="120" r="16" fill="#FFFFFF" stroke="#09090B" stroke-width="2.5"/>
+              <!-- Jewel Case Cover -->
+              <rect x="36" y="54" width="120" height="132" rx="6" fill="#09090B" stroke="#9333EA" stroke-width="2.5"/>
+              <rect x="36" y="54" width="14" height="132" fill="#9333EA"/>
+              ${miniAkariEmblem(103, 102, 0.27)}
+              <text x="103" y="144" text-anchor="middle" fill="#FFFFFF" font-family="Orbitron, sans-serif" font-weight="900" font-size="9">YOUNG BOY A</text>
+              <text x="103" y="158" text-anchor="middle" fill="#C084FC" font-family="Noto Sans JP, sans-serif" font-weight="900" font-size="9">ヤングボーイA</text>
+              <text x="103" y="174" text-anchor="middle" fill="#A1A1AA" font-family="Orbitron, sans-serif" font-size="7">KAGAYAKI [03]</text>
+            </svg>`;
+        default: // lanyard
+          return `
+            <svg viewBox="0 0 240 240" class="w-full h-full">
+              <rect width="240" height="240" fill="#F3F4F6"/>
+              <!-- Lanyard Strap -->
+              <path d="M85,30 L120,105 L155,30" fill="none" stroke="#9333EA" stroke-width="10" stroke-linecap="round"/>
+              <!-- VIP Pass Card -->
+              <rect x="80" y="102" width="80" height="106" rx="10" fill="#09090B" stroke="#9333EA" stroke-width="2.5"/>
+              <rect x="80" y="102" width="80" height="24" rx="8" fill="#9333EA"/>
+              <text x="120" y="118" text-anchor="middle" fill="#FFFFFF" font-family="Orbitron, sans-serif" font-weight="800" font-size="9">VIP STAGE</text>
+              ${miniAkariEmblem(120, 154, 0.23)}
+              <text x="120" y="192" text-anchor="middle" fill="#FFFFFF" font-family="Orbitron, sans-serif" font-weight="800" font-size="9">AKARI [03]</text>
+            </svg>`;
+      }
+    }
+
+    // 3. State Management
+    let activeCategory = 'All';
+    let cart = [];
+    let appliedPromo = null;
+    let modalSelectedSize = null;
+    let modalQty = 1;
+
+    // 4. Render Product Grid (Crisp White Cards on #F8F9FA)
+    function renderProducts() {
+      const grid = document.getElementById('product-grid');
+      const filtered = activeCategory === 'All'
+        ? PRODUCTS
+        : PRODUCTS.filter(p => p.category === activeCategory);
+
+      grid.innerHTML = filtered.map(product => `
+        <article class="group rounded-2xl bg-white border border-zinc-200 hover:border-purple-500 overflow-hidden flex flex-col justify-between transition duration-300 hover:-translate-y-1 shadow-card hover:shadow-neon">
+          <div>
+            <!-- Product Visual Mockup -->
+            <div onclick="openProductModal('${product.id}')" class="relative aspect-square bg-zinc-100 overflow-hidden cursor-pointer border-b border-zinc-200">
+              ${product.badge ? `
+                <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-lg bg-jet text-purple-400 border border-purple-500/40 font-display font-bold text-[10px] tracking-wider shadow-xs">
+                  ${product.badge}
+                </span>` : ''}
+              <div class="w-full h-full group-hover:scale-105 transition duration-500">
+                ${getProductSVG(product.artType)}
+              </div>
+              <div class="absolute inset-0 bg-jet/0 group-hover:bg-jet/15 transition flex items-end justify-center pb-3 opacity-0 group-hover:opacity-100">
+                <span class="px-3.5 py-1.5 rounded-xl bg-jet text-white border border-purple-500 text-xs font-display font-bold shadow-md">
+                  Quick View
+                </span>
+              </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="p-4">
+              <div class="flex items-center justify-between text-[11px] text-purple-700 font-bold font-jp mb-1">
+                <span>${product.category}</span>
+                <span>${product.jpTag}</span>
+              </div>
+              <h3 onclick="openProductModal('${product.id}')" class="font-bold text-charcoal text-base leading-snug group-hover:text-purple-700 transition cursor-pointer line-clamp-2">
+                ${product.name}
+              </h3>
+            </div>
+          </div>
+
+          <!-- Price & Action Bar -->
+          <div class="px-4 pb-4 pt-2 flex items-center justify-between gap-2">
+            <span class="font-display font-black text-lg text-jet">
+              $${product.price.toFixed(2)}
+            </span>
+            <button onclick="quickAddToCart('${product.id}')" class="px-3.5 py-2 rounded-xl bg-jet hover:bg-purple-600 text-white font-display font-bold text-xs tracking-wider uppercase transition cursor-pointer">
+              + Add
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // 5. Category Filter Handler
+    function filterCategory(category, scrollToCatalog = false) {
+      activeCategory = category;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        const isMatch = btn.dataset.category === category;
+        if (isMatch) {
+          btn.className = 'filter-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-display font-bold tracking-wider uppercase transition bg-purple-600 text-white shadow-neon cursor-pointer';
+        } else {
+          btn.className = 'filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-display font-bold tracking-wider uppercase transition bg-white text-charcoal hover:text-purple-700 border border-zinc-300 cursor-pointer';
+        }
+      });
+      renderProducts();
+      if (scrollToCatalog) {
+        document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // 6. Product Quick-View Modal
+    function openProductModal(productId) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product) return;
+
+      modalSelectedSize = product.sizes ? (product.sizes.includes('L') ? 'L' : product.sizes[0]) : null;
+      modalQty = 1;
+
+      const sizeSelectorHTML = product.sizes ? `
+        <div class="mt-4">
+          <div class="text-xs font-display font-bold uppercase tracking-wider text-zinc-500 mb-2">Select Size</div>
+          <div class="flex flex-wrap gap-2" id="modal-size-options">
+            ${product.sizes.map(size => `
+              <button type="button" onclick="selectModalSize('${size}')" data-size="${size}" class="modal-size-btn px-4 py-2 rounded-xl text-xs font-display font-bold border transition cursor-pointer ${size === modalSelectedSize ? 'bg-purple-600 border-purple-600 text-white shadow-neon' : 'bg-lightbg border-zinc-300 text-charcoal hover:border-purple-500'}">
+                ${size}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      ` : `
+        <div class="mt-4 inline-block px-3 py-1 rounded-lg bg-lightbg border border-zinc-200 text-xs font-semibold text-zinc-600">
+          Standard Edition • Ready to Ship
+        </div>
+      `;
+
+      document.getElementById('modal-content').innerHTML = `
+        <div class="bg-lightbg p-6 flex items-center justify-center border-b md:border-b-0 md:border-r border-zinc-200">
+          <div class="w-full max-w-[260px] aspect-square rounded-2xl overflow-hidden border border-zinc-200 shadow-xs">
+            ${getProductSVG(product.artType)}
+          </div>
+        </div>
+        <div class="p-6 sm:p-7 flex flex-col justify-between bg-white">
+          <div>
+            <div class="text-xs font-display font-bold tracking-widest text-purple-700 uppercase">
+              ${product.category} // ${product.jpTag}
+            </div>
+            <h3 class="font-display font-black text-xl text-jet mt-1 leading-snug">
+              ${product.name}
+            </h3>
+            <div class="font-display font-black text-2xl text-purple-700 mt-2">
+              $${product.price.toFixed(2)}
+            </div>
+            <p class="text-sm text-zinc-600 mt-3 leading-relaxed">
+              ${product.description}
+            </p>
+            ${sizeSelectorHTML}
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-zinc-200 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-display font-bold uppercase tracking-wider text-zinc-500">Quantity</span>
+              <div class="flex items-center gap-3 bg-lightbg border border-zinc-300 rounded-xl px-2 py-1">
+                <button type="button" onclick="changeModalQty(-1)" class="w-7 h-7 rounded-lg hover:bg-purple-100 text-jet font-bold cursor-pointer">-</button>
+                <span id="modal-qty-display" class="font-display font-bold text-sm w-5 text-center text-jet">1</span>
+                <button type="button" onclick="changeModalQty(1)" class="w-7 h-7 rounded-lg hover:bg-purple-100 text-jet font-bold cursor-pointer">+</button>
+              </div>
+            </div>
+
+            <button type="button" onclick="addFromModal('${product.id}')" class="w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-display font-bold text-xs tracking-wider uppercase shadow-neon transition cursor-pointer">
+              Add to Cart — $${product.price.toFixed(2)}
+            </button>
+          </div>
+        </div>
+      `;
+
+      const modal = document.getElementById('product-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function selectModalSize(size) {
+      modalSelectedSize = size;
+      document.querySelectorAll('.modal-size-btn').forEach(btn => {
+        if (btn.dataset.size === size) {
+          btn.className = 'modal-size-btn px-4 py-2 rounded-xl text-xs font-display font-bold border transition cursor-pointer bg-purple-600 border-purple-600 text-white shadow-neon';
+        } else {
+          btn.className = 'modal-size-btn px-4 py-2 rounded-xl text-xs font-display font-bold border transition cursor-pointer bg-lightbg border-zinc-300 text-charcoal hover:border-purple-500';
+        }
+      });
+    }
+
+    function changeModalQty(delta) {
+      modalQty = Math.max(1, Math.min(10, modalQty + delta));
+      document.getElementById('modal-qty-display').textContent = modalQty;
+    }
+
+    function closeProductModal() {
+      const modal = document.getElementById('product-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // 7. Single Info Modal Controls
+    function openSingleModal() {
+      const m = document.getElementById('single-modal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+    function closeSingleModal() {
+      const m = document.getElementById('single-modal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    // 8. Cart Operations
+    function quickAddToCart(productId) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product) return;
+      const defaultSize = product.sizes ? (product.sizes.includes('L') ? 'L' : product.sizes[0]) : null;
+      addItemToCart(product, defaultSize, 1);
+    }
+
+    function addFromModal(productId) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product) return;
+      addItemToCart(product, modalSelectedSize, modalQty);
+      closeProductModal();
+    }
+
+    function addItemToCart(product, size, qty) {
+      const key = `${product.id}__${size || 'standard'}`;
+      const existing = cart.find(item => item.key === key);
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push({
+          key,
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          size,
+          qty,
+          artType: product.artType
+        });
+      }
+      renderCart();
+      showToast(`Added "${product.name}"${size ? ` (${size})` : ''} to cart!`);
+    }
+
+    function updateCartQty(key, delta) {
+      const item = cart.find(i => i.key === key);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.key !== key);
+      }
+      renderCart();
+    }
+
+    function removeCartItem(key) {
+      cart = cart.filter(i => i.key !== key);
+      renderCart();
+    }
+
+    function applyPromoCode() {
+      const input = document.getElementById('promo-input');
+      const feedback = document.getElementById('promo-feedback');
+      const code = input.value.trim().toUpperCase();
+
+      feedback.classList.remove('hidden');
+      if (code === 'AKARI03') {
+        appliedPromo = 'AKARI03';
+        feedback.textContent = '✓ Code AKARI03 applied! 10% fan discount active.';
+        feedback.className = 'text-xs mt-1.5 text-emerald-600 font-bold';
+      } else {
+        appliedPromo = null;
+        feedback.textContent = '✕ Invalid code. Try AKARI03 for 10% off.';
+        feedback.className = 'text-xs mt-1.5 text-rose-600 font-semibold';
+      }
+      renderCart();
+    }
+
+    function renderCart() {
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById('cart-badge').textContent = totalItems;
+      document.getElementById('drawer-item-count').textContent = totalItems;
+
+      const cartBody = document.getElementById('cart-body');
+      const checkoutBtn = document.getElementById('checkout-btn');
+
+      if (cart.length === 0) {
+        cartBody.innerHTML = `
+          <div class="h-full flex flex-col items-center justify-center text-center py-12 px-4">
+            <div class="w-16 h-16 rounded-2xl bg-jet border-2 border-purple-600 flex items-center justify-center text-purple-400 font-display font-black text-xl mb-4 shadow-neon">
+              A
+            </div>
+            <p class="font-display font-bold text-jet text-base">Your cart is empty</p>
+            <p class="text-xs text-zinc-500 mt-1 max-w-xs">
+              Explore the Young Boy A (ヤングボーイA) debut collection and add merch items to get started.
+            </p>
+          </div>
+        `;
+        checkoutBtn.disabled = true;
+      } else {
+        checkoutBtn.disabled = false;
+        cartBody.innerHTML = cart.map(item => `
+          <div class="flex gap-3.5 p-3.5 rounded-2xl bg-white border border-zinc-200 shadow-xs">
+            <div class="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-zinc-200">
+              ${getProductSVG(item.artType)}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="text-sm font-bold text-jet leading-snug line-clamp-2">${item.name}</h4>
+                <button onclick="removeCartItem('${item.key}')" aria-label="Remove item" class="text-zinc-400 hover:text-rose-600 text-xs font-bold transition cursor-pointer">
+                  ✕
+                </button>
+              </div>
+              ${item.size ? `<div class="text-xs text-purple-700 font-display font-bold mt-0.5">Size: ${item.size}</div>` : ''}
+              <div class="flex items-center justify-between mt-2.5">
+                <div class="flex items-center gap-2 bg-lightbg border border-zinc-300 rounded-lg px-1.5 py-0.5">
+                  <button onclick="updateCartQty('${item.key}', -1)" class="w-6 h-6 text-xs font-bold text-charcoal hover:text-purple-700 cursor-pointer">-</button>
+                  <span class="text-xs font-display font-bold w-4 text-center text-jet">${item.qty}</span>
+                  <button onclick="updateCartQty('${item.key}', 1)" class="w-6 h-6 text-xs font-bold text-charcoal hover:text-purple-700 cursor-pointer">+</button>
+                </div>
+                <span class="font-display font-bold text-sm text-jet">
+                  $${(item.price * item.qty).toFixed(2)}
+                </span>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Calculate Totals
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const discount = appliedPromo === 'AKARI03' ? subtotal * 0.10 : 0;
+      const total = subtotal - discount;
+
+      document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+      document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
+
+      const discountRow = document.getElementById('discount-row');
+      if (discount > 0) {
+        discountRow.classList.remove('hidden');
+        document.getElementById('cart-discount').textContent = `-$${discount.toFixed(2)}`;
+      } else {
+        discountRow.classList.add('hidden');
+      }
+    }
+
+    function toggleCart(open) {
+      const drawer = document.getElementById('cart-drawer');
+      const overlay = document.getElementById('cart-drawer-overlay');
+      if (open) {
+        overlay.classList.remove('hidden');
+        drawer.classList.remove('translate-x-full');
+      } else {
+        overlay.classList.add('hidden');
+        drawer.classList.add('translate-x-full');
+      }
+    }
+
+    // 9. Simulated Checkout Flow
+    function startCheckout() {
+      if (cart.length === 0) return;
+
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const discount = appliedPromo === 'AKARI03' ? subtotal * 0.10 : 0;
+      const total = subtotal - discount;
+      const orderNum = 'AKR-' + Math.floor(100000 + Math.random() * 900000);
+
+      const cartBody = document.getElementById('cart-body');
+      cartBody.innerHTML = `
+        <div class="p-5 rounded-2xl bg-white border-2 border-purple-500 text-center space-y-4 shadow-card">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-100 border border-emerald-400 text-emerald-700 flex items-center justify-center text-2xl font-bold">
+            ✓
+          </div>
+          <div>
+            <div class="text-xs font-display font-bold tracking-widest text-purple-700 uppercase">ORDER CONFIRMED</div>
+            <h4 class="font-display font-black text-xl text-jet mt-1">THANK YOU FOR SUPPORTING AKARI [03]!</h4>
+            <p class="text-xs text-zinc-500 mt-1">Order ID: <span class="text-jet font-bold font-mono">${orderNum}</span></p>
+          </div>
+
+          <div class="text-left rounded-xl bg-lightbg p-3.5 border border-zinc-200 space-y-2 text-xs">
+            <div class="font-display font-bold text-purple-700 uppercase">Order Summary</div>
+            ${cart.map(i => `
+              <div class="flex justify-between text-charcoal">
+                <span>${i.qty}x ${i.name}${i.size ? ` (${i.size})` : ''}</span>
+                <span class="font-semibold">$${(i.price * i.qty).toFixed(2)}</span>
+              </div>
+            `).join('')}
+            <div class="border-t border-zinc-300 pt-2 flex justify-between font-display font-black text-sm text-jet">
+              <span>Total Paid</span>
+              <span class="text-purple-700">$${total.toFixed(2)}</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-zinc-500 font-jp">
+            ヤングボーイA // Produced by Kagayaki — Simulated checkout complete.
+          </p>
+
+          <button onclick="resetAfterCheckout()" class="w-full py-3 rounded-xl bg-jet hover:bg-purple-700 text-white font-display font-bold text-xs tracking-wider uppercase transition cursor-pointer">
+            Continue Shopping
+          </button>
+        </div>
+      `;
+
+      cart = [];
+      document.getElementById('cart-badge').textContent = '0';
+      document.getElementById('drawer-item-count').textContent = '0';
+      document.getElementById('checkout-btn').disabled = true;
+    }
+
+    function resetAfterCheckout() {
+      renderCart();
+      toggleCart(false);
+    }
+
+    // 10. Clipboard Copy & Toast Notification Utilities
+    function copyPromoCode() {
+      const tempInput = document.createElement('input');
+      tempInput.value = 'AKARI03';
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        showToast('Copied promo code AKARI03 (10% OFF)!');
+      } catch (err) {
+        showToast('Promo code: AKARI03');
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    function showToast(message) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'px-4 py-3 rounded-xl bg-jet border border-purple-500 text-xs sm:text-sm font-medium text-white shadow-neon flex items-center gap-2 transition-opacity duration-300';
+      toast.innerHTML = `<span class="text-purple-400 font-display font-bold">[A]</span> <span>${message}</span>`;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 2600);
+    }
+
+    // Initialize Store on Load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderProducts();
+      renderCart();
+    });
+  </script>
+</body>
+</html>
