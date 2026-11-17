@@ -1,0 +1,9 @@
+name: Akari Site Bug Check
+on: [push, pull_request]
+jobs:
+  html-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check HTML for syntax bugs
+        run: npx htmlhint index.html
